@@ -31,7 +31,7 @@ void llamaCiclo();
 int busquedaAleatorios(int minimo, int maximo);
 void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1]);
 void imprimirMatrizLinea();
-float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1], char alumnos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad);
+float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1], char equipos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad);
 int main()
 {
     srand(getpid());
@@ -41,47 +41,47 @@ int main()
 void llamaCiclo()
 {
     //Definimos cada matriz la cual maneja las diferentes facultades
-    float matriz_facultad_1[NUMERO_Equipos][NUMERO_Anio + 1];
-    float matriz_facultad_2[NUMERO_Equipos][NUMERO_Anio + 1];
-    float matriz_facultad_3[NUMERO_Equipos][NUMERO_Anio + 1];
+    float matriz_equipo_1[NUMERO_Equipos][NUMERO_Anio + 1];
+    float matriz_equipo_2[NUMERO_Equipos][NUMERO_Anio + 1];
+    float matriz_equipo_3[NUMERO_Equipos][NUMERO_Anio + 1];
     char opcion;
     bool repetir = true;
 
     //Ingresamos la variable que servira
-    float promedio_facultad_1;
-    float promedio_facultad_2;
-    float promedio_facultad_3;
-    //Aqui estaremos manejando cada matriz ingresando los alumnos en cada una
-    char alumnos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA] = {"Carlos","Luis","Maria","Pedro","Juan"};
+    float promedio_1;
+    float promedio_2;
+    float promedio_3;
+    //Aqui estaremos manejando cada matriz ingresando los equipos en cada una
+    char equipos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA] = {"Rojos","Cremas","Xela","Aurora","Guasta"};
     do
     {
         system("cls");
-        promedio_facultad_1=0;
-        promedio_facultad_2=0;
-        promedio_facultad_3=0;
-        cout << "*** Comparativo de Facultades ***" << endl << endl;
+        promedio_1=0;
+        promedio_2=0;
+        promedio_3=0;
+        cout << "*** Comparativo de Ligas ***" << endl << endl;
         //Se escribe el titulo de cada facultad generando las 3 matrices
-        llenarMatriz(matriz_facultad_1);
-        promedio_facultad_1 = imprimirMatriz(matriz_facultad_1, alumnos, "Liga Mayor");
-        llenarMatriz(matriz_facultad_2);
-        promedio_facultad_2 = imprimirMatriz(matriz_facultad_2, alumnos, "Liga Nacional");
-        llenarMatriz(matriz_facultad_3);
-        promedio_facultad_3 = imprimirMatriz(matriz_facultad_3, alumnos, "Liga segunda");
+        llenarMatriz(matriz_equipo_1);
+        promedio_1 = imprimirMatriz(matriz_equipo_1, equipos, "Liga Mayor");
+        llenarMatriz(matriz_equipo_2);
+        promedio_2 = imprimirMatriz(matriz_equipo_2, equipos, "Liga Nacional");
+        llenarMatriz(matriz_equipo_3);
+        promedio_3 = imprimirMatriz(matriz_equipo_3, equipos, "Liga segunda");
         //Los if funcionan para escribir establecer el promedio de cada facultad
-        if (promedio_facultad_1 > promedio_facultad_2 && promedio_facultad_1 > promedio_facultad_3)
+        if (promedio_1 > promedio_2 && promedio_1 > promedio_3)
         {
-            cout << " La facultad con el mejor promedio es : " << "Facultad de Ingenieria" << " Promedio: " << promedio_facultad_1 << endl;
+            cout << " La liga con el mejor promedio es : " << "Liga Mayor" << " Promedio: " << promedio_1 << endl;
         } else
-        if (promedio_facultad_2 > promedio_facultad_1 && promedio_facultad_2 > promedio_facultad_3)
+        if (promedio_2 > promedio_1 && promedio_2 > promedio_3)
         {
-            cout << " La facultad con el mejor promedio es : " << "Facultad de Arquitectura" << " Promedio: " << promedio_facultad_2 << endl;
+            cout << " La liga con el mejor promedio es : " << "Liga Nacional" << " Promedio: " << promedio_2 << endl;
         } else
-        if (promedio_facultad_3 > promedio_facultad_2 && promedio_facultad_3 > promedio_facultad_1)
+        if (promedio_3 > promedio_2 && promedio_3 > promedio_1)
         {
-            cout << " La facultad con el mejor promedio es : " << "Facultad de Administracion" << " Promedio: " << promedio_facultad_3 << endl;
+            cout << " La liga con el mejor promedio es : " << "Liga segunda" << " Promedio: " << promedio_3 << endl;
         } else
         {
-            cout << " Algunas facultades tienen el mismo promedio " << endl << endl;
+            cout << " Algunas ligas tienen el mismo promedio " << endl << endl;
         }
         //Establece la funcion de repetir el ciclo
         cout << "Desea otro calculo (s/n)? ";
@@ -107,23 +107,23 @@ void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1])
     for (y = 0; y < NUMERO_Equipos; y++)
     {
         float suma = 0;
-        int calificacion = 0;
+        int puntos = 0;
         //se manejan las columnas
         for (x = 0; x < NUMERO_Anio; x++)
         {
             if (x == 0 || x == 3)  //primer parcial //se genera numero aleatorio en la posicion del primer parcial y en actividades
             {
-                calificacion = busquedaAleatorios(MIN_CALIFICACION, 50);
+                puntos = busquedaAleatorios(MIN_CALIFICACION, 50);
             } else if (x == 1)  //segundo parcial //se genera numero aleatorio en la posicion del segundo parcial
             {
-                calificacion = busquedaAleatorios(MIN_CALIFICACION, 50);
+                puntos = busquedaAleatorios(MIN_CALIFICACION, 50);
             } else if (x == 2)  //examen final // Se genera numero aleatorio en la posicion del examen final
             {
-                calificacion = busquedaAleatorios(MIN_CALIFICACION, 50);
+                puntos = busquedaAleatorios(MIN_CALIFICACION, 50);
             }
-            suma += (float)calificacion; //aqui establecemos la suma de las calificaciones
-            matriz[y][x] = calificacion; //se vam sumando en cada posicion
-            calificacion=0;
+            suma += (float)puntos; //aqui establecemos la suma de las calificaciones
+            matriz[y][x] = puntos; //se vam sumando en cada posicion
+            puntos=0;
         }
         // Agregar promedio
 
@@ -142,61 +142,61 @@ void imprimirMatrizLinea()
     }
     cout << "+\n";
 }
-float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1], char alumnos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad)
+float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1], char equipos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad)
 {
     //Funciòn que imprime la matriz en pantalla y realizando los calculos necesarios del promedio
     int y, x;
 
     //se establecen las variables que nos ayudaran con los promedios
-    float promedioMayor = matriz[0][NUMERO_Anio];
+    float PromedioMayor = matriz[0][NUMERO_Anio];
     float promedioMenor = matriz[0][NUMERO_Anio];
     float totalGeneral = 0;
     float promedioGeneral = 0;
-    char alumnoPromedioMayor[MAXIMA_LONGITUD_CADENA];
-    char alumnoPromedioMenor[MAXIMA_LONGITUD_CADENA];
+    char EquipoPromedioMayor[MAXIMA_LONGITUD_CADENA];
+    char EquipoPromedioMenor[MAXIMA_LONGITUD_CADENA];
     //memcpy sirve para mover un dato de memoria de un lugar a otro
-    memcpy(alumnoPromedioMayor, alumnos[0], MAXIMA_LONGITUD_CADENA);
-    memcpy(alumnoPromedioMenor, alumnos[0], MAXIMA_LONGITUD_CADENA);
+    memcpy(EquipoPromedioMayor, equipos[0], MAXIMA_LONGITUD_CADENA);
+    memcpy(EquipoPromedioMenor, equipos[0], MAXIMA_LONGITUD_CADENA);
     cout << nombreFacultad << endl;
-    cout << "(Nota1)=>Primer Parcial  (Nota2)=>Segundo Parcial (Nota3)=>Final (Nota4)=>Actividades" << endl;
+    cout << "(Anio1)=>2010  (Anio2)=>2011 (Anio3)=>2012 (Anio4)=>2014" << endl;
     imprimirMatrizLinea();
-    cout << setw(9) << "Alumno";
+    cout << setw(9) << "Equipo";
     //menejamos un ciclo for para ir escribiendo arriba de la matriz
     for (x = 0; x < NUMERO_Anio; x++)
     {
-        cout << setw(9) << "Nota" << x + 1;
+        cout << setw(9) << "Anio" << x + 1;
     }
     cout << setw(8) << "Tot" << endl;
     imprimirMatrizLinea();
     for (y = 0; y < NUMERO_Equipos; y++)
     {
         //se muestra lo que se almacena en la matriz notas en la posicion y
-        cout << "!" << setw(8) << alumnos[y] << "!";
+        cout << "!" << setw(8) << equipos[y] << "!";
         float suma = 0;
         for (x = 0; x < NUMERO_Anio; x++)
         {
-            int calificacion = matriz[y][x];
-            cout << setw(9) << calificacion << "!";
+            int puntos = matriz[y][x];
+            cout << setw(9) << puntos << "!";
         }
         //Se utiliza ciclos if para establecer el mejor promedio
         float promedio = matriz[y][NUMERO_Anio];
         totalGeneral += matriz[y][NUMERO_Anio];
-        if (promedio > promedioMayor)
+        if (promedio > PromedioMayor)
         {
-            promedioMayor = promedio;
-            memcpy(alumnoPromedioMayor, alumnos[y], MAXIMA_LONGITUD_CADENA);
+            PromedioMayor = promedio;
+            memcpy(EquipoPromedioMayor, equipos[y], MAXIMA_LONGITUD_CADENA);
         }
         if (promedio < promedioMenor)
         {
             promedioMenor = promedio;
-            memcpy(alumnoPromedioMenor, alumnos[y], MAXIMA_LONGITUD_CADENA);
+            memcpy(EquipoPromedioMenor, equipos[y], MAXIMA_LONGITUD_CADENA);
         }
         cout << setw(9) << fixed << setprecision(2) << promedio << "!" << endl;
         imprimirMatrizLinea();
     }
     promedioGeneral = totalGeneral / NUMERO_Equipos;
-    cout << "Nota mayor: " << setw(10) << alumnoPromedioMayor <<  setw(10) << promedioMayor << endl;
-    cout << "Nota menor: " << setw(10) << alumnoPromedioMenor <<  setw(10) << promedioMenor << endl;
-    cout << "Nota prom : " << setw(10) <<  promedioGeneral << endl << endl;
+    cout << "Equipo Mayor Puntaje: " << setw(10) << EquipoPromedioMayor <<  setw(10) << PromedioMayor << endl;
+    cout << "Equipo Menor Puntaje: " << setw(10) << EquipoPromedioMenor <<  setw(10) << promedioMenor << endl;
+    cout << "Promedio de Liga : " << setw(10) <<  promedioGeneral << endl << endl;
     return promedioGeneral;
 }
