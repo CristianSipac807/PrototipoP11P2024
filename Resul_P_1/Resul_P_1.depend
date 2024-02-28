@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1709136304 source:c:\users\david sipac\desktop\universidad\tercer semestre\programación 1\parcial 1\resul_p_1\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<iostream>
+	<iomanip>
+

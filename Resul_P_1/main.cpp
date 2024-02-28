@@ -22,7 +22,7 @@ using namespace std;
 //se define todas las variables que utilizaremos para manejar la matriz
 #define NUMERO_Equipos 5
 #define NUMERO_Anio 4
-#define MAX_CALIFICACION 100
+#define MAX_CALIFICACION 50
 #define MIN_CALIFICACION 0
 #define MAXIMA_LONGITUD_CADENA 100
 
@@ -62,11 +62,11 @@ void llamaCiclo()
         cout << "*** Comparativo de Facultades ***" << endl << endl;
         //Se escribe el titulo de cada facultad generando las 3 matrices
         llenarMatriz(matriz_facultad_1);
-        promedio_facultad_1 = imprimirMatriz(matriz_facultad_1, alumnos, "Facultad de Ingenieria");
+        promedio_facultad_1 = imprimirMatriz(matriz_facultad_1, alumnos, "Liga Mayor");
         llenarMatriz(matriz_facultad_2);
-        promedio_facultad_2 = imprimirMatriz(matriz_facultad_2, alumnos, "Facultad de Arquitectura");
+        promedio_facultad_2 = imprimirMatriz(matriz_facultad_2, alumnos, "Liga Nacional");
         llenarMatriz(matriz_facultad_3);
-        promedio_facultad_3 = imprimirMatriz(matriz_facultad_3, alumnos, "Facultad de Administracion");
+        promedio_facultad_3 = imprimirMatriz(matriz_facultad_3, alumnos, "Liga segunda");
         //Los if funcionan para escribir establecer el promedio de cada facultad
         if (promedio_facultad_1 > promedio_facultad_2 && promedio_facultad_1 > promedio_facultad_3)
         {
@@ -113,13 +113,13 @@ void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1])
         {
             if (x == 0 || x == 3)  //primer parcial //se genera numero aleatorio en la posicion del primer parcial y en actividades
             {
-                calificacion = busquedaAleatorios(MIN_CALIFICACION, 20);
+                calificacion = busquedaAleatorios(MIN_CALIFICACION, 50);
             } else if (x == 1)  //segundo parcial //se genera numero aleatorio en la posicion del segundo parcial
             {
-                calificacion = busquedaAleatorios(MIN_CALIFICACION, 25);
+                calificacion = busquedaAleatorios(MIN_CALIFICACION, 50);
             } else if (x == 2)  //examen final // Se genera numero aleatorio en la posicion del examen final
             {
-                calificacion = busquedaAleatorios(MIN_CALIFICACION, 35);
+                calificacion = busquedaAleatorios(MIN_CALIFICACION, 50);
             }
             suma += (float)calificacion; //aqui establecemos la suma de las calificaciones
             matriz[y][x] = calificacion; //se vam sumando en cada posicion
