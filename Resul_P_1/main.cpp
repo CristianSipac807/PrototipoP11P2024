@@ -21,8 +21,7 @@ using namespace std;
 //se define todas las variables que utilizaremos para manejar la matriz
 //se define todas las variables que utilizaremos para manejar la matriz
 #define NUMERO_Equipos 5
-
-#define NUMERO_NOTAS 4
+#define NUMERO_Anio 4
 #define MAX_CALIFICACION 100
 #define MIN_CALIFICACION 0
 #define MAXIMA_LONGITUD_CADENA 100
@@ -30,9 +29,9 @@ using namespace std;
 //Definimos todas las funciones para establecer los parametros de las matrices
 void llamaCiclo();
 int busquedaAleatorios(int minimo, int maximo);
-void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1]);
+void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1]);
 void imprimirMatrizLinea();
-float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1], char alumnos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad);
+float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1], char alumnos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad);
 int main()
 {
     srand(getpid());
@@ -42,9 +41,9 @@ int main()
 void llamaCiclo()
 {
     //Definimos cada matriz la cual maneja las diferentes facultades
-    float matriz_facultad_1[NUMERO_Equipos][NUMERO_NOTAS + 1];
-    float matriz_facultad_2[NUMERO_Equipos][NUMERO_NOTAS + 1];
-    float matriz_facultad_3[NUMERO_Equipos][NUMERO_NOTAS + 1];
+    float matriz_facultad_1[NUMERO_Equipos][NUMERO_Anio + 1];
+    float matriz_facultad_2[NUMERO_Equipos][NUMERO_Anio + 1];
+    float matriz_facultad_3[NUMERO_Equipos][NUMERO_Anio + 1];
     char opcion;
     bool repetir = true;
 
@@ -100,7 +99,7 @@ int busquedaAleatorios(int minimo, int maximo)
 }
 
 //se usan ciclos for para llenar las matrices
-void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1])
+void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1])
 {
     int y, x;
     //Se manejan las filas
@@ -110,7 +109,7 @@ void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1])
         float suma = 0;
         int calificacion = 0;
         //se manejan las columnas
-        for (x = 0; x < NUMERO_NOTAS; x++)
+        for (x = 0; x < NUMERO_Anio; x++)
         {
             if (x == 0 || x == 3)  //primer parcial //se genera numero aleatorio en la posicion del primer parcial y en actividades
             {
@@ -128,7 +127,7 @@ void llenarMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1])
         }
         // Agregar promedio
 
-        matriz[y][NUMERO_NOTAS] = suma;
+        matriz[y][NUMERO_Anio] = suma;
     }
 }
 
@@ -137,20 +136,20 @@ void imprimirMatrizLinea()
     int x;
 
     cout << "+--------";
-    for (x = 0; x < NUMERO_NOTAS + 1; x++)
+    for (x = 0; x < NUMERO_Anio + 1; x++)
     {
         cout << "+---------";
     }
     cout << "+\n";
 }
-float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1], char alumnos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad)
+float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_Anio + 1], char alumnos[NUMERO_Equipos][MAXIMA_LONGITUD_CADENA], string nombreFacultad)
 {
     //Funciòn que imprime la matriz en pantalla y realizando los calculos necesarios del promedio
     int y, x;
 
     //se establecen las variables que nos ayudaran con los promedios
-    float promedioMayor = matriz[0][NUMERO_NOTAS];
-    float promedioMenor = matriz[0][NUMERO_NOTAS];
+    float promedioMayor = matriz[0][NUMERO_Anio];
+    float promedioMenor = matriz[0][NUMERO_Anio];
     float totalGeneral = 0;
     float promedioGeneral = 0;
     char alumnoPromedioMayor[MAXIMA_LONGITUD_CADENA];
@@ -163,7 +162,7 @@ float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1], char alumno
     imprimirMatrizLinea();
     cout << setw(9) << "Alumno";
     //menejamos un ciclo for para ir escribiendo arriba de la matriz
-    for (x = 0; x < NUMERO_NOTAS; x++)
+    for (x = 0; x < NUMERO_Anio; x++)
     {
         cout << setw(9) << "Nota" << x + 1;
     }
@@ -174,14 +173,14 @@ float imprimirMatriz(float matriz[NUMERO_Equipos][NUMERO_NOTAS + 1], char alumno
         //se muestra lo que se almacena en la matriz notas en la posicion y
         cout << "!" << setw(8) << alumnos[y] << "!";
         float suma = 0;
-        for (x = 0; x < NUMERO_NOTAS; x++)
+        for (x = 0; x < NUMERO_Anio; x++)
         {
             int calificacion = matriz[y][x];
             cout << setw(9) << calificacion << "!";
         }
         //Se utiliza ciclos if para establecer el mejor promedio
-        float promedio = matriz[y][NUMERO_NOTAS];
-        totalGeneral += matriz[y][NUMERO_NOTAS];
+        float promedio = matriz[y][NUMERO_Anio];
+        totalGeneral += matriz[y][NUMERO_Anio];
         if (promedio > promedioMayor)
         {
             promedioMayor = promedio;
